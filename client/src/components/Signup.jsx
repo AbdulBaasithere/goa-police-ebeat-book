@@ -6,10 +6,10 @@ export const Signup = () => {
   const history = useNavigate();
 
   const [name, setName] = useState("");
-  const [id, setId] = useState("");
+  const [police_id, setPoliceId] = useState("");
   const [phone, setPhone] = useState("");
-  const [pass, setPass] = useState("");
-  const [cpass, setCpass] = useState("");
+  const [password, setPassword] = useState("");
+  const [cpassword, setCpassword] = useState("");
   const [designation, setDesignation] = useState("");
 
   async function submit(e) {
@@ -17,20 +17,20 @@ export const Signup = () => {
 
     try {
       await axios
-        .post("http://localhost:8000/signup", {
+        .post("http://localhost:3000/user/register", {
           name,
-          id,
+          police_id,
           phone,
-          pass,
-          cpass,
+          password,
+          cpassword,
           designation,
         })
         .then((res) => {
-          if (res.data === "exists") {
-            alert("User Exists");
-          } else if (res.data === "notexists") {
-            alert("WElcome new User");
-            history("/home", { state: { id: phone } });
+          if (res.data.isValid === 1) {
+            history("/user/otp/register");
+          } else if((res.data.isValid === 0)) {
+            console.log("Invalidd");
+            alert("INVALID!")
           }
         })
         .catch(() => {
@@ -60,8 +60,8 @@ export const Signup = () => {
             </div>
             <div class="input-group">
               <input
-                value={id}
-                onChange={(e) => setId(e.target.value)}
+                value={police_id}
+                onChange={(e) => setPoliceId(e.target.value)}
                 type="text"
                 class="form-control"
                 placeholder="User ID"
@@ -81,8 +81,8 @@ export const Signup = () => {
               />
             </div>
             <input
-              value={pass}
-              onChange={(e) => setPass(e.target.value)}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               name="pword"
               type="password"
               id="inputPassword5"
@@ -91,8 +91,8 @@ export const Signup = () => {
               placeholder="Password"
             />
             <input
-              value={cpass}
-              onChange={(e) => setCpass(e.target.value)}
+              value={cpassword}
+              onChange={(e) => setCpassword(e.target.value)}
               name="cpword"
               type="password"
               id="cinputPassword5"
@@ -119,7 +119,7 @@ export const Signup = () => {
               value=""
               className="btn btn-primary"
             >
-              Register
+              GET OTP
             </button>
           </form>
           <br />

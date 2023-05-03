@@ -5,8 +5,8 @@ import { useNavigate, Link } from "react-router-dom";
 export const Login = () => {
   const history = useNavigate();
 
-  const [id, setId] = useState("");
-  const [pass, setPass] = useState("");
+  // const [police_id, setPoliceId] = useState("");
+  const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
 
   async function submit(e) {
@@ -14,21 +14,26 @@ export const Login = () => {
 
     try {
       await axios
-        .post("http://localhost:8000/", {
-          id,
-          pass,
+        .post("http://localhost:3000/user/login", {
+          password,
           phone,
         })
         .then((res) => {
-          if (res.data === "exists") {
-            history("/home", { state: { id: phone } });
-            alert("Welcome old uesr");
-          } else if (res.data === "notexists") {
-            alert("User not signed up or invalid creds");
+          console.log(res);
+
+          if(res.data.isValid){
+            // alert("Successfully Logged in!")
+            history("/user/otp/login");
+          if(res.data.isToken){
+            history("/profile/BeatOfficer")
+          }
+          }else{
+            alert("Invalid Credentials")
+            history("/")
           }
         })
-        .catch(() => {
-          alert("Wrong details");
+        .catch((e) => {
+          // alert("Wrong details");
           console.log(e);
         });
     } catch (e) {
@@ -42,27 +47,18 @@ export const Login = () => {
         <div className="login-inner-content flex-col-center">
           <h1>EBeat Login</h1>
           <form action="post">
-            <div class="input-group mb-3">
+            {/* <div class="input-group mb-3">
               <input
-                value={id}
-                onChange={(e) => setId(e.target.value)}
+                value={police_id}
+                onChange={(e) => setPoliceId(e.target.value)}
                 type="text"
                 class="form-control"
                 placeholder="User ID"
                 aria-label="UserID"
                 aria-describedby="basic-addon1"
               />
-            </div>
-            <input
-              value={pass}
-              onChange={(e) => setPass(e.target.value)}
-              name="pword"
-              type="password"
-              id="inputPassword5"
-              class="form-control"
-              aria-labelledby="passwordHelpBlock"
-              placeholder="Password"
-            />
+            </div> */}
+
             <div class="input-group mb-3">
               <input
                 value={phone}
@@ -74,13 +70,23 @@ export const Login = () => {
                 aria-describedby="basic-addon1"
               />
             </div>
+            <input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              name="pword"
+              type="password"
+              id="inputPassword5"
+              class="form-control"
+              aria-labelledby="passwordHelpBlock"
+              placeholder="Password"
+            />
             <button
               type="submit"
               onClick={submit}
               value=""
               className="btn btn-primary"
             >
-              Login
+              Get OTP
             </button>
           </form>
           <br />
