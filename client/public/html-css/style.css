@@ -1,0 +1,24 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+header{
+    height: 15vh;
+}
+.flex-row-center-all{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.img-holder{
+    height: 100%;
+    width: 50%;
+}
+.header-img img{
+    height: 10vh;
+    margin: 2rem;
+}
+.alert-message{
+    font-size: 1rem;
+}

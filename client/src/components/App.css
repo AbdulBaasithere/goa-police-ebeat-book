@@ -1,0 +1,133 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+header {
+  height: 15vh;
+}
+
+/* Custom flex class */
+.flex-row-center {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.flex-col-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Header.jsx */
+.img-holder {
+  height: 100%;
+  width: 50%;
+}
+.header-img img {
+  height: 10vh;
+  margin: 2rem;
+}
+/* .alert-message{font-size: 1rem;} */
+
+/* Login */
+.login-main {
+  min-height: 50vh;
+}
+.login-main h1 {
+  margin-bottom: 2.5rem;
+}
+.login-main input,
+select {
+  margin-top: 1.5rem;
+}
+.login-main button {
+  margin-top: 1.5rem;
+}
+.login-inner-content {
+  margin: 3rem 0;
+  padding: 3rem;
+  border-radius: 10px;
+  border: 2px solid black;
+}
+
+/* Officer details */
+
+/* Personal.jsx */
+.personal-details {
+  padding: 2rem;
+  margin: 0;
+}
+.personal-details .col {
+  max-width: 200px;
+}
+.personal-details h4 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+.user-img {
+  padding: 1.5rem;
+  border-radius: 50%;
+  border: 2px solid black;
+}
+.personal-details .fa-user {
+  font-size: 5rem;
+}
+
+/* Station.jsx */
+.station-details {
+  margin-top: 2rem;
+  min-width: 300px;
+}
+.station-details div {
+  padding: 0.5rem;
+  font-weight: 500;
+  font-size: 1.2rem;
+  margin: 0 1rem;
+}
+
+/* Features.jsx */
+.features-main {
+  padding: 1rem;
+}
+.features-main button {
+  margin: 1rem;
+}
+
+/* Footer */
+.footer-main {
+  margin-top: 3.5rem;
+  padding-bottom: 1rem;
+}
+.footer-inner {
+  width: 500px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.other-footer-features {
+  float: right;
+  padding-right: 2rem;
+}
+.other-footer-features button {
+  margin-left: 1.5rem;
+}
+.fa-bell {
+  color: red;
+  padding: 0.5rem;
+  padding-bottom: 1rem;
+  font-size: 2rem;
+  margin-left: 0.5rem;
+}
+
+/* Media Queries to make the page responsive */
+@media (max-width: 700px) {
+  .station-details {
+    flex-direction: column;
+  }
+  .station-details div {
+    margin-bottom: 1rem;
+  }
+}
